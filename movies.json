@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.3",
+  "options":{
+
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "Movie API",
+    "contact": {
+      "email": "saya@mail.com"
+    },
+    "version": "1.0.11"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/movies": {
+      "get": {
+        "summary": "show all movies",
+        "tags": [
+          "movies"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful find movie",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movie"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create movies",
+        "tags": [
+          "movies"
+        ],
+        "requestBody": {
+          "description": "create new movies",
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movie"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful create movie",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies/{moviesid}": {
+      "get": {
+        "summary": "show movies by id",
+        "tags": [
+          "movies"
+        ],
+        "parameters": [
+          {
+            "name": "moviesid",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful find movie by id",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movie"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Movie": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 3
+          },
+          "title": {
+            "type": "string",
+            "example": "creature"
+          },
+          "genres": {
+            "type": "string",
+            "example": "documentary"
+          },
+          "year": {
+            "type": "integer",
+            "example": 1997
+          }
+        }
+      },
+      "success": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "succesful"
+          }
+        }
+      }
+    }
+  }
+}
